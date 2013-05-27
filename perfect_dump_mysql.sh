@@ -4,6 +4,7 @@
 dump_user=root
 dump_pass=mysql56
 dump_dir=/tmp
+db_name=test
 
 ## stop the last mysqlbinlog
 mysqlbinlog_pid=`pgrep mysqlbinlog`
@@ -14,9 +15,9 @@ fi
 ## dump data on local slave
 /usr/local/mysql/bin/mysqldump -u${dump_user} -p${dump_pass} -h127.0.0.1 --dump-slave=2 \
                                --include-master-host-port --single-transaction \
-                               --databases test >${dump_dir}/test.sql 2>/dev/null
+                               --databases ${db_name} >${dump_dir}/${db_name}.sql 2>/dev/null
 ## dump binlog from remote master
-master_status=`grep -m1 -i "change master" test.sql \
+master_status=`grep -m1 -i "change master" ${db_name}.sql \
                |sed -e 's/,//g' -e 's/;//' -e "s/'//g" | awk '{print $5" "$6" "$7" "$8}'`
 master_host=`echo ${master_status} |awk '{print $1}' |awk -F'=' '{print $2}'`
 master_port=`echo ${master_status} |awk '{print $2}' |awk -F'=' '{print $2}'`
