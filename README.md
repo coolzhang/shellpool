@@ -1,4 +1,4 @@
 shellpool
 =========
 
-Practice Linux Shell
+Practice Linux Shell scripting(here only using Bash)
