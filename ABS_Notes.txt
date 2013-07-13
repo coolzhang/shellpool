@@ -1,0 +1,12 @@
+1. Problems reading from a pipe.
+>
+i=0
+cat file.txt | while read line
+do
+((++i))
+done
+i=$i
+echo $i
+<
+Reason: the while acts as if it were running in a subshell, so the changes to i in the while loop can not
+effect the value of the global i.
