@@ -1,4 +1,4 @@
-1. Problems reading from a pipe.
+- Problems reading from a pipe.
 >
 i=0
 cat file.txt | while read line
@@ -15,3 +15,15 @@ effect the value of the global i.
 $UID -- current login user
 $PWD -- current working directory
 || and && -- far more efficient than the if test 
+read and excute -- both permissions for a script to run
+./scriptname -- necessary to explicitly invoke the script in the current directory, which is not included in $PATH
+
+- Chapter 3
+partial quoting [""] -- "STRING" preserves (from interpretation) most of the special characters within STRING.
+full quoting [''] -- 'STRING' preserves all special characters within STRING. 
+                      This is a stronger form of quoting than "STRING".
+                      'X' has the same effect of \X .
+null command [:] -- "NOP", do-nothing same as pass in Python;
+                    true, while : same as while True; 
+                    : > file same as cat /dev/null > file, truncates a file to zero length and create it if not exist;
+                    placeholder
