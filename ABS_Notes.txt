@@ -10,3 +10,8 @@ echo $i
 <
 Reason: the while acts as if it were running in a subshell, so the changes to i in the while loop can not
 effect the value of the global i.
+
+- Chapter 2
+$UID -- current login user
+$PWD -- current working directory
+|| and && -- far more efficient than the if test 
