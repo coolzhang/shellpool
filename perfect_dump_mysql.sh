@@ -15,6 +15,8 @@ fi
 ## dump data on local slave
 /usr/local/mysql/bin/mysqldump -u${dump_user} -p${dump_pass} -h127.0.0.1 --dump-slave=2 \
                                --include-master-host-port --single-transaction \
+                               --routines --triggers --events --hex-blob \
+                               --default-character-set=utf8 \
                                --databases ${db_name} >${dump_dir}/${db_name}.sql 2>/dev/null
 ## dump binlog from remote master
 master_status=`grep -m1 -i "change master" ${db_name}.sql \
